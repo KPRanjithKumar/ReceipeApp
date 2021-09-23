@@ -18,45 +18,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       val responseText = findViewById<View>(R.id.textView) as TextView
+
        val title = findViewById<View>(R.id.editTextTextPersonName2) as EditText
        val author = findViewById<View>(R.id.editTextTextPersonName3) as EditText
        val inge = findViewById<View>(R.id.editTextTextPersonName4) as EditText
        val ins = findViewById<View>(R.id.editTextTextPersonName5) as EditText
         val savebtn = findViewById<View>(R.id.button) as Button
-
-        /*  //  val responseText = findViewById<View>(R.id.textView) as TextView
-           //val apiInterface = APIClient().getClient()?.create(APIInterface::class.java)
-           val apiInterface = APIClient().getClient()?.create(APIInterface::class.java)
-
-           val call: Call<RecipeDetails?>? = apiInterface!!.getRecipies()
-
-           call?.enqueue(object : Callback<RecipeDetails?> {
-               override fun onResponse(
-                   call: Call<RecipeDetails?>?,
-                   response: Response<RecipeDetails?>
-
-               ) {
-                   Log.d("123abcTAG", response.code().toString() + "")
-                   var displayResponse = ""
-                   val resource: RecipeDetails? = response.body()
-                   val datumList = resource?.data
-
-                   for (datum in datumList!!) {
-                       displayResponse += """ ${datum.title} ${datum.author}
-                           ${datum.ingredients}
-                           ${datum.instructions}
-   """
-                   }
-                   responseText.text = displayResponse
-                   Log.d("123abcTAG", displayResponse + "")
-
-               }
-
-               override fun onFailure(call: Call<RecipeDetails?>, t: Throwable?) {
-                   call.cancel()
-               }
-           })*/
 
         savebtn.setOnClickListener {
 

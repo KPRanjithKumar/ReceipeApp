@@ -12,13 +12,18 @@ class RecipeDetails {
         var id: Int? = null
 
 
-        @SerializedName("titlee")
+        @SerializedName("title")
         var title: String? = null
 
         @SerializedName("author")
         var author: String? = null
 
-
+        constructor(title: String?, author: String?, ingredients: String?, instructions: String?) {
+            this.title = title
+            this.author = author
+            this.ingredients = ingredients
+            this.instructions = instructions
+        }
 
         @SerializedName("ingredients")
         var ingredients: String? = null

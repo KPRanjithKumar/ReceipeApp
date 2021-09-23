@@ -18,13 +18,10 @@ class ViewRecipes : AppCompatActivity() {
         setContentView(R.layout.activity_view_receipe)
         val responseText = findViewById<View>(R.id.textView2) as TextView
 
-        //Here we declare and initialize recyclerview and adapter
-
-        //Calls the api and set it to adapter inside setUpRecyclerViewData()
         getRecipes(onResult = {
             recipeDetails = it
             Log.e("Data", recipeDetails.toString())
-         //   setUpRecyclerViewData();
+
             var stringToBePritined:String? = "";
             for(recipe in recipeDetails!!){
                 stringToBePritined = stringToBePritined +recipe.title + "\n"+recipe.author + "\n"+recipe.ingredients + "\n"+recipe.instructions+ "\n\n"
@@ -48,14 +45,9 @@ class ViewRecipes : AppCompatActivity() {
                 override fun onFailure(call: Call<List<RecipeDetails.Datum>>, t: Throwable) {
                     onResult(null)
                     Toast.makeText(applicationContext, ""+t.message, Toast.LENGTH_SHORT).show();
-                    Log.d("aSFFAasd", "onFailure: "+t.message)
                 }
 
             })
         }
-    }
-
-    private fun setUpRecyclerViewData() {
-        //Here we can use the array and set it to adapter
     }
 }
