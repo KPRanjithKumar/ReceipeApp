@@ -1,5 +1,6 @@
 package ran.am.receipeapp
 
+import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ViewRecipes : AppCompatActivity() {
+
     private var recipeDetails: List<RecipeDetails.Datum>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +34,9 @@ class ViewRecipes : AppCompatActivity() {
 
     private fun getRecipes(onResult: (List<RecipeDetails.Datum>?) -> Unit) {
         val apiInterface = APIClient().getClient()?.create(APIInterface::class.java)
-
+        val progressDialog = ProgressDialog(this@ViewRecipes)
+        progressDialog.setMessage("Please wait")
+        progressDialog.show()
         if (apiInterface != null) {
             apiInterface.getRecipies()?.enqueue(object : Callback<List<RecipeDetails.Datum>> {
                 override fun onResponse(
@@ -40,10 +44,13 @@ class ViewRecipes : AppCompatActivity() {
                     response: Response<List<RecipeDetails.Datum>>
                 ) {
                     onResult(response.body())
+                    progressDialog.dismiss()
+
                 }
 
                 override fun onFailure(call: Call<List<RecipeDetails.Datum>>, t: Throwable) {
                     onResult(null)
+                    progressDialog.dismiss()
                     Toast.makeText(applicationContext, ""+t.message, Toast.LENGTH_SHORT).show();
                 }
 
